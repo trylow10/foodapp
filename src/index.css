@@ -94,7 +94,6 @@ body {
   height: 500px;
   width: 330px;
   border-radius: 100px 0 0 100px;
-  clip-path: ellipse((50%, 50%, 50%, 50%));
   display: flex;
   justify-content: left;
   align-items: center;
