@@ -1,13 +1,20 @@
-import React from "react";
-import Header from "./Header";
-import HeroSection from "./HeroSection";
+// TODO: css module
+import Header from "./header/header";
+import Hero from "./hero";
+import Pizza from "./pizza";
+
+import PizzaProvider from "./context/pizza-provider";
 
 const App = () => {
   return (
-    <div>
+    <>
       <Header />
-      <HeroSection />
-    </div>
+      <Hero />
+      <PizzaProvider>
+        <Pizza />
+        <div className="selected-image-container">{/*  */}</div>
+      </PizzaProvider>
+    </>
   );
 };
 

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+// TODO: separte into folder hero and make like header and integate css module and see difference in class
 
+// define constant file for this
 import image1 from "../assets/image1.jpg";
 import image2 from "../assets/image2.png";
 import image3 from "../assets/image3.jpg";
 import image4 from "../assets/image4.png";
+import { usePizza } from "./context/pizza-provider";
 
 const pizzaImages = [
   { id: 1, src: image1, alt: "Pizza 1" },
@@ -13,29 +15,22 @@ const pizzaImages = [
 ];
 
 const Pizza = () => {
-  const [selectedImage, setSelectedImage] = useState(image1);
-  const handleImageHover = (src) => {
-    setSelectedImage(src);
-  };
+  const { activePizza, setActivePizza } = usePizza();
 
   return (
     <div>
       <div className="pizza-images">
-        {pizzaImages.map((pizza) => (
-          <img
-            key={pizza.id}
-            src={pizza.src}
-            alt={pizza.alt}
-            onMouseEnter={() => handleImageHover(pizza.src)}
-          />
-        ))}
+        {pizzaImages.map((pizza, index) => {
+          return (
+            <button key={pizza.id} onClick={() => setActivePizza(index)}>
+              <img src={pizza.src} alt={pizza.alt} />
+              <div
+                className={`border-b ${index === activePizza ? "active" : ""} `}
+              />
+            </button>
+          );
+        })}
       </div>
-
-      {selectedImage && (
-        <div className="selected-image-container">
-          <img src={selectedImage} alt="Selected Pizza" />
-        </div>
-      )}
     </div>
   );
 };
